@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Keepers Solutions — Wholesale · Real Estate · Web Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:      #080808;
+    --black-2:    #111111;
+    --black-3:    #1a1a1a;
+    --black-4:    #222222;
+    --gold:       #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dim:   #8a6d2f;
+    --gold-glow:  rgba(201,168,76,0.2);
+    --white:      #ffffff;
+    --off-white:  #f5f2ed;
+    --muted:      #888880;
+    --border:     rgba(201,168,76,0.15);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 72px;
+    height: 80px;
+    background: rgba(8,8,8,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s;
+  }
+  nav.scrolled {
+    height: 68px;
+    border-bottom-color: rgba(201,168,76,0.25);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 42px; height: 42px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  .logo-mark:hover { box-shadow: 0 0 20px var(--gold-glow); }
+  .logo-mark-inner {
+    width: 28px; height: 28px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .logo-words {
+    display: flex; flex-direction: column; line-height: 1.15;
+  }
+  .logo-words strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+  .logo-words span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 100%;
+    height: 1px; background: var(--gold);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-cta {
+    background: transparent !important;
+    color: var(--gold) !important;
+    border: 1px solid var(--gold) !important;
+    padding: 10px 28px;
+    font-family: 'Barlow Condensed', sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    box-shadow: 0 0 30px var(--gold-glow) !important;
+  }
+  .nav-cta::after { display: none !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 140px 72px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gold grid lines background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* Ambient gold glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -100px;
+    width: 800px; height: 800px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.1s ease both;
+    position: relative; z-index: 2;
+    max-width: 900px;
+  }
+  .hero-title .gold { color: var(--gold); }
+  .hero-title .italic { font-style: italic; font-weight: 300; }
+  .hero-title .outline {
+    -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+    color: transparent;
+  }
+
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 32px 0;
+    animation: fadeUp 0.8s 0.2s ease both;
+    position: relative; z-index: 2;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.85;
+    max-width: 520px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s 0.25s ease both;
+    position: relative; z-index: 2;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.35s ease both;
+    position: relative; z-index: 2;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    padding: 18px 44px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    border: none; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-gold::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+  .btn-gold:hover {
+    box-shadow: 0 0 40px rgba(201,168,76,0.4), 0 8px 24px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+  }
+  .btn-gold:hover::before { transform: translateX(100%); }
+
+  .btn-ghost {
+    color: var(--white);
+    padding: 17px 36px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Hero bottom stats */
+  .hero-stats {
+    position: absolute;
+    bottom: 60px; right: 72px;
+    display: flex; gap: 48px;
+    z-index: 2;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .h-stat { text-align: right; }
+  .h-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .h-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+    display: block;
+  }
+  .h-stat-sep {
+    width: 1px; background: var(--border);
+    align-self: stretch;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px; left: 72px;
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 2;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--muted);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--gold);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    overflow: hidden;
+    background: var(--black-2);
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .marquee-item .gold-dot {
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 130px 72px; }
+
+  .s-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .s-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+  .s-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .s-title .gold { color: var(--gold); }
+  .s-title .italic { font-style: italic; }
+  .s-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.85;
+    max-width: 520px;
+  }
+
+  /* ── ABOUT / MISSION ── */
+  .about-section {
+    background: var(--black-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-section::before {
+    content: 'SKS';
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 280px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -10px;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .about-left .big-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 40px;
+    border-left: 2px solid var(--gold);
+    padding-left: 32px;
+  }
+  .about-left .big-statement em { color: var(--gold); font-style: italic; }
+
+  .about-pillars { display: flex; flex-direction: column; }
+  .pillar {
+    display: flex; gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    transition: padding-left 0.3s;
+    cursor: default;
+  }
+  .pillar:hover { padding-left: 8px; }
+  .pillar:last-child { border-bottom: none; }
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.3);
+    line-height: 1;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .pillar-content h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .pillar-content p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+  }
+
+  .about-right {
+    position: relative;
+  }
+  .about-card-main {
+    background: var(--black-3);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card-main::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+  }
+  .about-card-main::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--gold-glow), transparent 70%);
+    pointer-events: none;
+  }
+  .card-diamond {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    margin-bottom: 32px;
+  }
+  .about-card-main h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .about-card-main p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+  }
+
+  .about-mini-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-top: 12px;
+  }
+  .mini-card {
+    background: var(--black-3);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .mini-card:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+  }
+  .mini-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .mini-card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--black); }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: end;
+    margin-bottom: 72px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .svc-card {
+    background: var(--black);
+    padding: 52px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .svc-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: right 0.5s ease;
+  }
+  .svc-card:hover { background: var(--black-2); }
+  .svc-card:hover::after { right: 0; }
+  .svc-card.hero-svc {
+    background: linear-gradient(160deg, rgba(201,168,76,0.08) 0%, var(--black) 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    grid-column: span 1;
+  }
+  .svc-card.hero-svc::after { right: 0; }
+
+  .svc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: rgba(201,168,76,0.4);
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    display: block;
+  }
+  .svc-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .svc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .svc-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .svc-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .svc-list li {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.06);
+    display: flex; align-items: center; gap: 12px;
+    transition: color 0.2s;
+  }
+  .svc-list li:hover { color: rgba(255,255,255,0.7); }
+  .svc-list li::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+  .svc-list li:last-child { border-bottom: none; }
+
+  .svc-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    margin-top: 36px;
+    transition: gap 0.3s;
+    cursor: pointer;
+  }
+  .svc-link:hover { gap: 14px; }
+
+  /* ── PROCESS ── */
+  .process-section {
+    background: var(--black-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .process-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 72px;
+  }
+  .p-step {
+    background: var(--black-2);
+    padding: 48px 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .p-step:hover { background: var(--black-3); }
+  .p-step-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  .p-step:hover .p-step-line {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .p-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .p-step h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .p-step p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+  }
+
+  /* ── WHY SKS ── */
+  .why-section { background: var(--black); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 72px;
+  }
+  .why-card {
+    background: var(--black);
+    padding: 44px 36px;
+    border-top: 2px solid transparent;
+    transition: all 0.35s;
+  }
+  .why-card:hover {
+    background: var(--black-2);
+    border-top-color: var(--gold);
+  }
+  .why-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+  .why-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .why-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+  }
+
+  /* ── CONTACT FORM ── */
+  .contact-section {
+    background: var(--black-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 0% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 100% 50%, rgba(201,168,76,0.03) 0%, transparent 60%);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 100px;
+    align-items: start;
+    position: relative; z-index: 2;
+  }
+  .contact-left h2 { margin-bottom: 24px; }
+  .contact-left p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.85;
+    margin-bottom: 48px;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .c-info-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+  .c-info-item:last-child { border-bottom: none; }
+  .c-info-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .c-info-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .c-info-value {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  /* FORM */
+  .contact-form {
+    background: var(--black-3);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+  }
+  .contact-form::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--white);
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+  }
+  .form-group select {
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 44px;
+  }
+  .form-group select option {
+    background: var(--black-3);
+    color: var(--white);
+  }
+  .form-group select.selected { color: var(--white); }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.7;
+  }
+
+  /* Service checkboxes */
+  .service-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .service-check {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(201,168,76,0.12);
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+  }
+  .service-check:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.03);
+  }
+  .service-check input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0; padding: 0;
+    border: none; box-shadow: none;
+  }
+  .service-check input[type="checkbox"]:focus {
+    border: none; box-shadow: none;
+  }
+  .service-check span {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+  }
+  .service-check:has(input:checked) {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+  .service-check:has(input:checked) span { color: var(--white); }
+
+  .form-label-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover {
+    box-shadow: 0 0 40px rgba(201,168,76,0.35);
+    transform: translateY(-1px);
+  }
+
+  /* Success message */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px;
+  }
+  .form-success .checkmark { font-size: 48px; margin-bottom: 16px; }
+  .form-success h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .form-success p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    border-top: 1px solid var(--border);
+    padding: 80px 72px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 72px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    margin-bottom: 40px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.85;
+    margin-top: 24px;
+    max-width: 280px;
+  }
+  .footer-col h5 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+  }
+  .footer-gold-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(201,168,76,0.4);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    nav { padding: 0 28px; }
+    .nav-links { gap: 24px; }
+    section { padding: 90px 28px; }
+    .hero { padding: 120px 28px 80px; }
+    .hero-stats { right: 28px; gap: 28px; }
+    .scroll-hint { left: 28px; }
+    .about-grid, .contact-grid, .services-header { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 60px 28px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 36px 28px; }
+    .hero-stats { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav-links li:not(:last-child) { display: none; }
+    .why-grid, .process-grid { grid-template-columns: 1fr; }
+    .service-options { grid-template-columns: 1fr; }
+    .about-mini-cards { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark"><div class="logo-mark-inner"></div></div>
+    <div class="logo-words">
+      <strong>Space Keepers Solutions</strong>
+      <span>LLC · Atlanta, Georgia</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow">Space Keepers Solutions LLC</div>
+  <h1 class="hero-title">
+    We Move<br>
+    <span class="gold italic">Deals.</span><br>
+    <span class="outline">Spaces.</span><br>
+    <span class="italic">Brands.</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">
+    Wholesale product sourcing, off-market real estate, and premium web design — three powerful services under one roof, built to grow your wealth and your business.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-gold">Start a Conversation</a>
+    <a href="#services" class="btn-ghost">
+      Explore Services
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat">
+      <span class="h-stat-num">3</span>
+      <span class="h-stat-label">Core Services</span>
+    </div>
+    <div class="h-stat-sep"></div>
+    <div class="h-stat">
+      <span class="h-stat-num">ATL</span>
+      <span class="h-stat-label">Based & Operating</span>
+    </div>
+    <div class="h-stat-sep"></div>
+    <div class="h-stat">
+      <span class="h-stat-num">LLC</span>
+      <span class="h-stat-label">Registered Business</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="s-tag">Who We Are</div>
+      <p class="big-statement">
+        Space Keepers Solutions was built on one belief — <em>every problem has a deal attached to it.</em>
+      </p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="pillar-num">I</span>
+          <div class="pillar-content">
+            <h4>Multi-Stream Expertise</h4>
+            <p>We operate across wholesale, real estate, and digital services — giving clients access to multiple high-value solutions from a single, trusted partner.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">II</span>
+          <div class="pillar-content">
+            <h4>Deal-First Mentality</h4>
+            <p>Whether it's sourcing product, finding off-market properties, or building your digital presence — we approach every engagement with a deal-maker's mindset.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-num">III</span>
+          <div class="pillar-content">
+            <h4>Atlanta Rooted</h4>
+            <p>Registered and operating in Atlanta, GA — with deep market knowledge, active buyer networks, and local business relationships that create real advantage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right reveal d2">
+      <div class="about-card-main">
+        <div class="card-diamond"></div>
+        <h3>Solutions Built for Builders</h3>
+        <p>Space Keepers Solutions LLC is a registered Atlanta-based company with an established EIN and DUNS number. We work with entrepreneurs, investors, and businesses who are serious about growing — and need a partner who can move at their speed.</p>
+      </div>
+      <div class="about-mini-cards">
+        <div class="mini-card">
+          <span class="mini-card-num">EIN</span>
+          <span class="mini-card-label">Registered Entity</span>
+        </div>
+        <div class="mini-card">
+          <span class="mini-card-num">DUNS</span>
+          <span class="mini-card-label">Verified Business</span>
+        </div>
+        <div class="mini-card">
+          <span class="mini-card-num">ATL</span>
+          <span class="mini-card-label">Georgia Based</span>
+        </div>
+        <div class="mini-card">
+          <span class="mini-card-num">LLC</span>
+          <span class="mini-card-label">Formally Structured</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <div class="s-tag">What We Offer</div>
+      <h2 class="s-title">Three Services.<br><span class="gold italic">One Partner.</span></h2>
+    </div>
+    <p class="s-sub reveal d1">Every service we offer is built around one goal — creating real, measurable value for the people we work with. No fluff. No guesswork.</p>
+  </div>
+
+  <div class="services-grid reveal">
+    <!-- Wholesale -->
+    <div class="svc-card hero-svc">
+      <span class="svc-num">01 — WHOLESALE</span>
+      <span class="svc-icon">📦</span>
+      <div class="svc-name">Product<br>Wholesale</div>
+      <p class="svc-desc">We source, acquire, and resell wholesale inventory through Amazon, Walmart, and direct channels — moving product efficiently and profitably.</p>
+      <ul class="svc-list">
+        <li>Amazon & Walmart Marketplace</li>
+        <li>Retail & Liquidation Arbitrage</li>
+        <li>Bulk Product Sourcing</li>
+        <li>Inventory Management</li>
+        <li>Brand & Resale Strategy</li>
+      </ul>
+      <span class="svc-link">Inquire About Wholesale →</span>
+    </div>
+
+    <!-- Real Estate -->
+    <div class="svc-card">
+      <span class="svc-num">02 — REAL ESTATE</span>
+      <span class="svc-icon">🏙️</span>
+      <div class="svc-name">Wholesale<br>Real Estate</div>
+      <p class="svc-desc">We find distressed and off-market properties in the Atlanta metro, connect motivated sellers with qualified buyers, and close deals fast.</p>
+      <ul class="svc-list">
+        <li>Off-Market Property Sourcing</li>
+        <li>Motivated Seller Acquisition</li>
+        <li>Buyer Network — Atlanta Area</li>
+        <li>Contract Assignment</li>
+        <li>Market Analysis & Comps</li>
+      </ul>
+      <span class="svc-link">Explore Real Estate →</span>
+    </div>
+
+    <!-- Web Design -->
+    <div class="svc-card">
+      <span class="svc-num">03 — WEB DESIGN</span>
+      <span class="svc-icon">💻</span>
+      <div class="svc-name">Premium<br>Web Design</div>
+      <p class="svc-desc">We build high-converting, visually sharp websites for local businesses, service providers, and entrepreneurs — deployed fast and built to last.</p>
+      <ul class="svc-list">
+        <li>Custom Website Design</li>
+        <li>Mobile Responsive Builds</li>
+        <li>Booking & Contact Forms</li>
+        <li>Vercel / GitHub Deployment</li>
+        <li>Ongoing Maintenance</li>
+      </ul>
+      <span class="svc-link">See Web Packages →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div style="max-width:600px;">
+    <div class="s-tag reveal">How We Work</div>
+    <h2 class="s-title reveal">Simple Process.<br><span class="gold italic">Real Results.</span></h2>
+  </div>
+  <div class="process-grid reveal">
+    <div class="p-step">
+      <div class="p-step-line"></div>
+      <div class="p-step-num">01</div>
+      <h4>Connect</h4>
+      <p>Fill out our contact form and tell us what you need. We respond within 24 hours — no runaround, no sales pitch.</p>
+    </div>
+    <div class="p-step">
+      <div class="p-step-line"></div>
+      <div class="p-step-num">02</div>
+      <h4>Consult</h4>
+      <p>We get on a call or exchange messages to understand your goals, budget, and timeline. We find the right solution for you.</p>
+    </div>
+    <div class="p-step">
+      <div class="p-step-line"></div>
+      <div class="p-step-num">03</div>
+      <h4>Execute</h4>
+      <p>We move quickly and decisively. Whether it's sourcing product, locating a deal, or launching your site — we get it done.</p>
+    </div>
+    <div class="p-step">
+      <div class="p-step-line"></div>
+      <div class="p-step-num">04</div>
+      <h4>Deliver</h4>
+      <p>You receive results you can see, measure, and build on. Then we stay available for whatever comes next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SKS -->
+<section class="why-section">
+  <div class="reveal">
+    <div class="s-tag">Why Choose Us</div>
+    <h2 class="s-title">The Space Keepers<br><span class="gold italic">Difference.</span></h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <span class="why-icon">⚡</span>
+      <h4>We Move Fast</h4>
+      <p>In wholesale and real estate, speed is everything. We respond quickly, make decisions fast, and don't let deals die on the table.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🎯</span>
+      <h4>Multi-Stream Capability</h4>
+      <p>Most companies do one thing. We operate across three high-value verticals — meaning we can solve more problems for more clients.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🤝</span>
+      <h4>Relationship Driven</h4>
+      <p>We build long-term relationships, not one-time transactions. When you win, we win — that's the only way we like to operate.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">📍</span>
+      <h4>Atlanta Market Knowledge</h4>
+      <p>We know the Atlanta market — the zip codes, the buyers, the trends. That local edge gives our clients a real competitive advantage.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🏛️</span>
+      <h4>Formally Established</h4>
+      <p>Space Keepers Solutions LLC is a registered business with EIN and DUNS number — giving partners and clients confidence in who they're working with.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💡</span>
+      <h4>Entrepreneurial Mindset</h4>
+      <p>We're builders ourselves. We understand the grind, the risks, and the rewards — and we show up with that same energy for every client.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-left reveal">
+      <div class="s-tag">Get In Touch</div>
+      <h2 class="s-title">Let's Build<br><span class="gold italic">Something.</span></h2>
+      <p>Tell us what you're working on and which service you need. We'll get back to you within 24 hours with a clear next step — no spam, no obligation.</p>
+      <div class="contact-info">
+        <div class="c-info-item">
+          <div class="c-info-icon">📍</div>
+          <div>
+            <div class="c-info-label">Location</div>
+            <div class="c-info-value">Atlanta, Georgia</div>
+          </div>
+        </div>
+        <div class="c-info-item">
+          <div class="c-info-icon">⏱️</div>
+          <div>
+            <div class="c-info-label">Response Time</div>
+            <div class="c-info-value">Within 24 Hours</div>
+          </div>
+        </div>
+        <div class="c-info-item">
+          <div class="c-info-icon">🏢</div>
+          <div>
+            <div class="c-info-label">Entity</div>
+            <div class="c-info-value">Space Keepers Solutions LLC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <div class="contact-form" id="contactForm">
+        <form action="https://formspree.io/f/mnjyovwd" method="POST" id="theForm">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="first_name" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="john@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="(404) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>How Did You Hear About Us?</label>
+            <select name="source" class="form-select">
+              <option value="" disabled selected>Select an option...</option>
+              <option value="Google Search">Google Search</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Referral">Referral / Word of Mouth</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Service Selection -->
+          <div style="margin-bottom: 20px;">
+            <span class="form-label-heading">Which Service Do You Need? (Select All That Apply)</span>
+            <div class="service-options">
+              <label class="service-check">
+                <input type="checkbox" name="service[]" value="Product Wholesale">
+                <span>📦 Product Wholesale</span>
+              </label>
+              <label class="service-check">
+                <input type="checkbox" name="service[]" value="Wholesale Real Estate">
+                <span>🏙️ Wholesale Real Estate</span>
+              </label>
+              <label class="service-check">
+                <input type="checkbox" name="service[]" value="Web Design">
+                <span>💻 Web Design</span>
+              </label>
+              <label class="service-check">
+                <input type="checkbox" name="service[]" value="Not Sure - Need Consultation">
+                <span>🤝 Not Sure — Consult Me</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Budget Range</label>
+            <select name="budget">
+              <option value="" disabled selected>Select your budget...</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 - $1,000">$500 — $1,000</option>
+              <option value="$1,000 - $5,000">$1,000 — $5,000</option>
+              <option value="$5,000 - $10,000">$5,000 — $10,000</option>
+              <option value="$10,000+">$10,000+</option>
+              <option value="Let's Discuss">Let's Discuss</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tell Us More</label>
+            <textarea name="message" placeholder="Describe what you're working on, what you need, and any relevant details..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Submit Inquiry →
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="checkmark">✦</div>
+          <h3>Message Received.</h3>
+          <p>We'll review your inquiry and respond within 24 hours. Check your email for a confirmation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <div class="logo-mark"><div class="logo-mark-inner"></div></div>
+        <div class="logo-words">
+          <strong>Space Keepers Solutions</strong>
+          <span>LLC · Atlanta, Georgia</span>
+        </div>
+      </a>
+      <p>A multi-vertical solutions company operating in wholesale, real estate, and web design — built by an entrepreneur, for entrepreneurs.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Product Wholesale</a></li>
+        <li><a href="#services">Wholesale Real Estate</a></li>
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About SKS</a></li>
+        <li><a href="#process">How We Work</a></li>
+        <li><a href="#about">Why Choose Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#contact">Send a Message</a></li>
+        <li><a href="#">Atlanta, Georgia</a></li>
+        <li><a href="#">Space Keepers Solutions LLC</a></li>
+        <li><a href="#">EIN · DUNS Verified</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Space Keepers Solutions LLC · Atlanta, GA · All Rights Reserved</p>
+    <span class="footer-gold-line">Wholesale · Real Estate · Web Design</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Marquee
+  const items = ['Product Wholesale','Wholesale Real Estate','Premium Web Design','Atlanta, Georgia','Space Keepers Solutions LLC','Amazon & Walmart Reselling','Off-Market Properties','Custom Websites','Deal-First Mentality'];
+  const track = document.getElementById('marqueeTrack');
+  [...items,...items,...items].forEach((item, i) => {
+    const el = document.createElement('span');
+    el.className = 'marquee-item';
+    el.innerHTML = item + '<span class="gold-dot"></span>';
+    track.appendChild(el);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => obs.observe(el));
+
+  // Select color fix
+  document.querySelectorAll('select').forEach(sel => {
+    sel.addEventListener('change', function() {
+      this.classList.add('selected');
+      this.style.color = 'white';
+    });
+  });
+
+  // Form submit
+  const form = document.getElementById('theForm');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
