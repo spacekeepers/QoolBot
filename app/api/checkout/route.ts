@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifySession } from "@/app/lib/dal";
 import { prisma } from "@/app/lib/prisma";
-import { stripe, PRO_PLAN } from "@/app/lib/stripe";
+import { getStripe, PRO_PLAN } from "@/app/lib/stripe";
 
 export async function POST(request: NextRequest) {
   const session = await verifySession();
@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
   }
 
   const origin = request.headers.get("origin") ?? process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const stripe = getStripe();
 
   let customerId = user.stripeCustomerId ?? undefined;
   if (!customerId) {
