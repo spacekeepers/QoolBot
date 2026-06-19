@@ -9,6 +9,11 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Migrations need a direct (non-pooled) connection: Prisma Migrate uses
+    // session-level advisory locks that pgbouncer-style transaction pooling
+    // breaks. Vercel's Neon integration provides DATABASE_URL_UNPOOLED for
+    // this; fall back to DATABASE_URL for setups without a separate direct
+    // connection string (e.g. local Postgres).
+    url: process.env["DATABASE_URL_UNPOOLED"] ?? process.env["DATABASE_URL"],
   },
 });
